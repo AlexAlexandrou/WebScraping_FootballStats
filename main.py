@@ -16,6 +16,7 @@ def Get_Team_Matches():
             return
         country = country.capitalize()
 
+        # Check if requested data exist locally
         if os.path.isfile(f'{country}/{country}_data.csv'):
             filename = f'{country}/{country}_data.csv'
             print(filename)
@@ -30,22 +31,23 @@ def Get_Team_Matches():
                 break
             team = team.capitalize()
 
-            if team.isdecimal(): #checks if team inserted is only numbers
+            # Check if team inserted is only numbers
+            if team.isdecimal(): 
                 print(f'\nERROR: Inserted team cannot be a number')
                 continue
 
-            #get rows that contain team (case insensitive)
+            # Get rows that contain team
             df = df[df.apply(lambda row: row.astype(str).str.contains(f'{team.casefold()}', case=False).any(), axis=1)]
 
             if df.empty:
                 print(f'\nERROR: Team {team} not found\n')
                 continue
 
-            # sort dataframe by date
+            # Sort dataframe by date
             df['date'] = pd.to_datetime(df['date'], dayfirst=True)
             df = df.sort_values(by=['date'])
             df['date'] = df['date'].dt.strftime('%d-%m-%Y')
-
+            # Divide score into home score and away score
             score_split = df['score'].str.split(" - ", n = 1, expand = True)
             df['home_score'] = score_split[0]
             df['away_score'] = score_split[1]
@@ -136,35 +138,30 @@ def Get_Team_Stats():
         
     print('\nFunction finished.\n')
 
-
-
 ##############################
-##############################
-##############################
-
 
 
 if __name__ == "__main__":
 
-    funcs_offline = []
-
     # Put local function names in list
+    funcs_offline = []
     for key, value in list(locals().items()):
         if callable(value) and value.__module__ == __name__ and str(key):
             funcs_offline.append(key)
 
     funcs_dict_offline = dict(enumerate(funcs_offline, start=len(funcs)))
 
-    #combine scrape and offline dictionaries into a single dictionary
+    # Combine scrape and offline dictionaries into a single dictionary
     funcs_dict.update(funcs_dict_offline)
+
 
     print('WELCOME TO FOOTBALL STATS \n\n\n')
     print('Below are the functions you can use: \n')
 
     selection = ''
-
+    # Display home menu to user
     while selection.casefold() != 'N'.casefold():
-        #[print(key,':',value) for key, value in funcs_dict.items()]
+        
         print('\n')
         [print(key,':',value,'\n') for key, value in funcs_dict.items()]
         selection = input('\nPlease select the number of the function you want to use (Enter N to quit program):  ')
@@ -175,7 +172,8 @@ if __name__ == "__main__":
             # Ask input again if not 'N' or number
             print('ERROR: Unkown command.\n')
             continue
-
+        
+        # Call selected function
         for key, value in funcs_dict.items():
             if selection == str(key):
                 print(f'\nSelected the "{value}" function.\n')
