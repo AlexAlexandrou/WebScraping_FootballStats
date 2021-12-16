@@ -1,3 +1,2 @@
-#driver_path = 'your_path/chromedriver'
-driver_path = '/Users/alexandrosalexandrou/Downloads/chromedriver'
-
+# Add your chromedriver path in the variable below
+driver_path = 'path/chromedriver'
