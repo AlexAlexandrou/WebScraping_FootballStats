@@ -7,7 +7,7 @@ The program consists of 8 functions which the user can choose from:
     - **Note**: This function should be executed first in order to download the data needed to execute the offline functions.
 <br/><br/>
 
-1. **UpdateLeague**: Similar to All_leagues, it gets all the league data but only for a specific country, which is selected by the user.
+1. **Update_League**: Similar to All_leagues, it gets all the league data but only for a specific country, which is selected by the user.
 
 2. **Scrape_All_Team_Stats**: The data regarding the win/lose ratio of all the teams in all available countries is scraped and put into .csv files, one for each country.
 
