@@ -288,7 +288,7 @@ def Update_Country_Team_Stats():
 
 
 
-# Get the upcoming matches of a specific country
+# Update the upcoming matches of a specific country
 def Upcoming_League_Matches():
     country = ''
     while country.casefold() !='N'.casefold():
@@ -324,6 +324,7 @@ def Upcoming_League_Matches():
         away_team = []
 
         for match in matches:
+            #Retrieve table entries that have '?' as their score
             if match.find_element_by_xpath('./td[3]').text.startswith('?'):      
                 date.append(match.find_element_by_xpath('./td[1]').text)
                 home = match.find_element_by_xpath('./td[2]').text
