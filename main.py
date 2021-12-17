@@ -7,7 +7,7 @@ if __name__ == "__main__":
     funcs_dict.update(funcs_dict_offline)
 
 
-    print('WELCOME TO FOOTBALL STATS \n\n\n')
+    print('\nWELCOME TO FOOTBALL STATS \n\n\n')
     print('Below are the functions you can use: \n')
 
     selection = ''
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     while selection.casefold() != 'N'.casefold():
         
         print('\n')
-        [print(key,':',value,'\n') for key, value in funcs_dict.items()]
+        [print(key+1,':',value,'\n') for key, value in funcs_dict.items()]
         selection = input('\nPlease select the number of the function you want to use (Enter N to quit program):  ')
         if selection.casefold() == 'N'.casefold():
             # end program if input is N
@@ -27,7 +27,7 @@ if __name__ == "__main__":
         
         # Call selected function
         for key, value in funcs_dict.items():
-            if selection == str(key):
+            if selection == str(key+1):
                 print(f'\nSelected the "{value}" function.\n')
                 locals()[f'{value}']()
                 break

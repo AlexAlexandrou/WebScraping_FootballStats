@@ -83,8 +83,10 @@ def Get_Upcoming_Matches():
         if os.path.isfile(f'{country}/{country}_data.csv'):
             df = read_csv(f'{country}/{country}_data.csv')
         else:
-            return print('Country not found in dataset')
+            print(f'\n{country} not found in dataset\n')
+            continue
         
+        print(f'\nSelected {country}\n')
         df['date'] = pd.to_datetime(df['date'], dayfirst=True)
         df = df.sort_values(by=['date'])
         df['date'] = df['date'].dt.strftime('%d-%m-%Y')
