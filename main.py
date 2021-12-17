@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
 
     print('\nWELCOME TO FOOTBALL STATS \n\n\n')
-    print('Below are the functions you can use: \n')
+    print('Below are the functions you can use:')
 
     selection = ''
     # Display home menu to user
